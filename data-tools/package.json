@@ -1,0 +1,14 @@
+{
+  "name": "cantonese-daily-data-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Generates the phrase dataset for the Cantonese typing practice site.",
+  "type": "commonjs",
+  "scripts": {
+    "build": "node build-data.js"
+  },
+  "dependencies": {
+    "@jimmyclchu/cangjie": "^1.0.0",
+    "to-jyutping": "^3.1.1"
+  }
+}

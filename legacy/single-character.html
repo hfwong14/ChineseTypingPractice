@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>速成查字 - 打字練習</title>
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #eaffcc 0%, #c1ffee 100%);
+            --text-main: #333;
+            --text-light: #888;
+            --green: #4caf50;
+            --red: #f44336;
+            --blue: #4285f4;
+            --btn-green: #61c465;
+            --btn-grey: #757d8a;
+            --btn-blue: #4a8df8;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'PingFang HK', 'Microsoft JhengHei', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #111;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .tab {
+            padding: 15px 40px;
+            font-size: 18px;
+            color: var(--text-light);
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            background: white;
+            border: none;
+        }
+
+        .tab.active {
+            color: var(--blue);
+            background: #f4f8ff;
+            font-weight: bold;
+            border-bottom: 3px solid var(--blue);
+        }
+
+        .badge-new {
+            position: absolute;
+            top: -10px;
+            right: 0;
+            background: #e5534b;
+            color: white;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        /* Main Card */
+        .card {
+            background: white;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        /* Toggle Switch */
+        .toggle-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 10px;
+            color: #aaa;
+            font-size: 16px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider { background-color: var(--blue); }
+        input:checked + .slider:before { transform: translateX(20px); }
+
+        /* Decomposition Box */
+        .decomp-box {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px auto;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #fafafa;
+            visibility: hidden; /* Hidden by default until typed */
+        }
+
+        .decomp-char {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            /* Gradient text like the image */
+            background: linear-gradient(45deg, #4285F4, #EA4335, #34A853, #FBBC05, #24C1E0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .decomp-code {
+            font-size: 16px;
+            letter-spacing: 2px;
+        }
+
+        /* Text Display Area */
+        .text-display {
+            background: #f8f9fa;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 25px;
+            font-size: 22px;
+            line-height: 1.8;
+            color: #b0b0b0;
+            margin-bottom: 20px;
+            text-align: justify;
+            word-break: break-all;
+        }
+
+        .char { transition: color 0.2s, background 0.2s; }
+        .char.correct { color: var(--green); }
+        .char.wrong { color: var(--red); text-decoration: underline; }
+        .char.active {
+            color: var(--blue);
+            background: #e8f0fe;
+            border-radius: 4px;
+            padding: 0 2px;
+        }
+
+        /* Input Area */
+        .type-input {
+            width: 100%;
+            padding: 20px;
+            font-size: 20px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.3s;
+            resize: none;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .type-input:focus { border-color: var(--blue); }
+
+        /* Status & Buttons */
+        .status {
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        button.action-btn {
+            padding: 12px 24px;
+            font-size: 18px;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.2s;
+        }
+
+        button.action-btn:hover { opacity: 0.9; }
+        .btn-share { background: var(--btn-green); }
+        .btn-restart { background: var(--btn-grey); }
+        .btn-next { background: var(--btn-blue); }
+
+    </style>
+</head>
+<body>
+
+    <h1>速成查字</h1>
+
+    <div class="tabs">
+        <button class="tab">🔍 查字</button>
+        <button class="tab active">
+            <span class="badge-new">NEW</span>
+            🎯 練打字
+        </button>
+    </div>
+
+    <div class="card">
+        <div class="toggle-container">
+            <span>拆解圖</span>
+            <label class="switch">
+                <input type="checkbox" id="decomp-toggle" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="decomp-box" id="decomp-box">
+            <div class="decomp-char" id="decomp-char">說</div>
+            <div class="decomp-code" id="decomp-code"></div>
+        </div>
+
+        <div class="text-display" id="text-display">
+            </div>
+
+        <textarea class="type-input" id="type-input" placeholder="開始打字..." autocomplete="off"></textarea>
+
+        <div class="status">
+            速度: <strong id="wpm">0</strong> 字/分鐘
+        </div>
+
+        <div class="buttons">
+            <button class="action-btn btn-share">🔗 分享</button>
+            <button class="action-btn btn-restart" onclick="restartTest()">↻ 重新開始</button>
+            <button class="action-btn btn-next" onclick="nextParagraph()">→ 下一個文本</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. 文本庫：可以在此處手動擴充更多段落
+        const paragraphs = [
+            "婆多瓦底知道勸不過來，就說：「你既是決意要入別的學校，我也無可奈何，我很喜歡你跟曇摩蜱學習經典。",
+            "繁體中文打字練習系統，這是一個用來測試打字速度與準確度的示範文本。",
+            "學習倉頡或速成輸入法需要大量的練習，熟能生巧，持之以恆必定能看到進步。"
+        ];
+
+        // 2. 倉頡字典（僅包含範例文字，實際應用建議引入完整的 JSON 字典庫或 API）
+        const cangjieDict = {
+            '婆':'水弓木女', '多':'弓戈弓戈', '瓦':'一女弓戈', '底':'戈竹一女戈', '知':'人大口', '道':'卜首山', '勸':'廿土大尸', '不':'一火', '過':'卜月月口', '來':'木人人', '就':'卜火戈山', '說':'卜口金口山', '你':'人弓火', '既':'日女一山', '是':'日一卜人', '決':'水弓大', '意':'卜廿日心', '要':'一田女', '入':'人', '別':'口尸中弓', '的':'竹日心戈', '學':'竹木月弓木', '校':'木卜金大', '我':'竹手戈', '也':'心木', '無':'人廿火火', '可':'一弓口', '奈':'大一一火', '何':'人一弓口', '很':'竹人日女', '喜':'土口廿口', '歡':'廿土人欠', '跟':'口一日女', '曇':'日一月戈', '摩':'戈木手手', '蜱':'中戈竹田十', '學':'竹木月弓木', '習':'尸一白', '經':'女火一女一', '典':'廿月金'
+        };
+
+        const colors = ['#4285F4', '#EA4335', '#34A853', '#FBBC05', '#24C1E0'];
+
+        let currentText = "";
+        let startTime = null;
+        let isTyping = false;
+
+        const textDisplay = document.getElementById('text-display');
+        const typeInput = document.getElementById('type-input');
+        const wpmDisplay = document.getElementById('wpm');
+        const decompBox = document.getElementById('decomp-box');
+        const decompToggle = document.getElementById('decomp-toggle');
+
+        // 初始化
+        function init() {
+            nextParagraph();
+            
+            // 監聽輸入事件
+            typeInput.addEventListener('input', handleInput);
+            decompToggle.addEventListener('change', updateDecomposition);
+        }
+
+        // 切換下一個文本
+        function nextParagraph() {
+            const randomIndex = Math.floor(Math.random() * paragraphs.length);
+            currentText = paragraphs[randomIndex];
+            restartTest();
+        }
+
+        // 重新開始
+        function restartTest() {
+            typeInput.value = "";
+            startTime = null;
+            isTyping = false;
+            wpmDisplay.innerText = "0";
+            renderText();
+        }
+
+        // 渲染文本與光標狀態
+        function renderText() {
+            const inputVal = typeInput.value;
+            let html = '';
+            let activeChar = null;
+
+            for (let i = 0; i < currentText.length; i++) {
+                const char = currentText[i];
+                let className = 'char';
+
+                if (i < inputVal.length) {
+                    if (inputVal[i] === char) className += ' correct';
+                    else className += ' wrong';
+                } else if (i === inputVal.length) {
+                    className += ' active';
+                    activeChar = char;
+                }
+
+                html += `<span class="${className}">${char}</span>`;
+            }
+
+            textDisplay.innerHTML = html;
+            updateDecomposition(activeChar);
+        }
+
+        // 處理打字輸入
+        function handleInput(e) {
+            if (!isTyping) {
+                isTyping = true;
+                startTime = new Date();
+            }
+
+            const inputVal = typeInput.value;
+            
+            // 防止輸入超過文本長度
+            if (inputVal.length > currentText.length) {
+                typeInput.value = inputVal.substring(0, currentText.length);
+                return;
+            }
+
+            renderText();
+            calculateWPM(inputVal.length);
+        }
+
+        // 計算 WPM (字/分鐘)
+        function calculateWPM(typedLength) {
+            if (!startTime || typedLength === 0) return;
+            const timeElapsed = (new Date() - startTime) / 1000 / 60; // 轉換為分鐘
+            const wpm = Math.round(typedLength / timeElapsed);
+            wpmDisplay.innerText = wpm;
+        }
+
+        // 更新倉頡拆解圖
+        function updateDecomposition(char) {
+            // 如果沒有傳入字元，嘗試獲取當前高亮的字元
+            if (typeof char !== 'string') {
+                const activeSpan = document.querySelector('.char.active');
+                char = activeSpan ? activeSpan.innerText : null;
+            }
+
+            if (!decompToggle.checked || !char || !cangjieDict[char]) {
+                decompBox.style.visibility = 'hidden';
+                return;
+            }
+
+            decompBox.style.visibility = 'visible';
+            document.getElementById('decomp-char').innerText = char;
+            
+            const code = cangjieDict[char];
+            let codeHtml = '';
+            for(let i = 0; i < code.length; i++) {
+                codeHtml += `<span style="color: ${colors[i % colors.length]}">${code[i]}</span> `;
+            }
+            document.getElementById('decomp-code').innerHTML = codeHtml;
+        }
+
+        // 啟動程式
+        init();
+
+    </script>
+</body>
+</html>

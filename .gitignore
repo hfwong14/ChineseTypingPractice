@@ -1,0 +1,7 @@
+.DS_Store
+node_modules/
+data-tools/node_modules/
+data-tools/*.tgz
+data-tools/Unihan.zip
+data-tools/unihan.db
+data-tools/package/

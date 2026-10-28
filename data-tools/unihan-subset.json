@@ -1,0 +1,554 @@
+{
+  "一": {
+    "cangjie": "M",
+    "cantonese": "jat1"
+  },
+  "乜": {
+    "cangjie": "PN",
+    "cantonese": "mat1 me1 me2 me5 mi1 ne6"
+  },
+  "事": {
+    "cangjie": "JLLN",
+    "cantonese": "si6"
+  },
+  "今": {
+    "cangjie": "OIN",
+    "cantonese": "gam1"
+  },
+  "企": {
+    "cangjie": "OYLM",
+    "cantonese": "kei2 kei5"
+  },
+  "但": {
+    "cangjie": "OAM",
+    "cantonese": "daan6"
+  },
+  "位": {
+    "cangjie": "OYT",
+    "cantonese": "wai2 wai6"
+  },
+  "住": {
+    "cangjie": "OYG",
+    "cantonese": "zyu6"
+  },
+  "你": {
+    "cangjie": "ONF",
+    "cantonese": "nei5"
+  },
+  "佢": {
+    "cangjie": "OSS",
+    "cantonese": "heoi5 keoi5"
+  },
+  "使": {
+    "cangjie": "OJLK",
+    "cantonese": "sai2 si2 si3"
+  },
+  "係": {
+    "cangjie": "OHVF",
+    "cantonese": "hai6"
+  },
+  "個": {
+    "cangjie": "OWJR",
+    "cantonese": "go3"
+  },
+  "借": {
+    "cangjie": "OTA",
+    "cantonese": "ze3"
+  },
+  "先": {
+    "cangjie": "HGHU",
+    "cantonese": "sin1"
+  },
+  "冇": {
+    "cangjie": "KB",
+    "cantonese": "mou5"
+  },
+  "加": {
+    "cangjie": "KSR",
+    "cantonese": "gaa1 gaa3"
+  },
+  "叫": {
+    "cangjie": "RVL",
+    "cantonese": "giu3"
+  },
+  "名": {
+    "cangjie": "NIR",
+    "cantonese": "meng4 ming4"
+  },
+  "呀": {
+    "cangjie": "RMVH",
+    "cantonese": "aa1 aa3 aa6"
+  },
+  "呢": {
+    "cangjie": "RSP",
+    "cantonese": "ne1 nei1 nei4 ni1"
+  },
+  "咁": {
+    "cangjie": "RTM",
+    "cantonese": "gam2 gam3"
+  },
+  "咗": {
+    "cangjie": "RKM",
+    "cantonese": "zo2"
+  },
+  "咩": {
+    "cangjie": "RTQ",
+    "cantonese": "me1"
+  },
+  "哋": {
+    "cangjie": "RGPD",
+    "cantonese": "dei2 dei6 di4"
+  },
+  "唔": {
+    "cangjie": "RMMR",
+    "cantonese": "m4 ng4"
+  },
+  "唞": {
+    "cangjie": "RQYJ",
+    "cantonese": "tau2"
+  },
+  "問": {
+    "cangjie": "ANR",
+    "cantonese": "man6"
+  },
+  "啦": {
+    "cangjie": "RQYT",
+    "cantonese": "laa1"
+  },
+  "啱": {
+    "cangjie": "RUMR",
+    "cantonese": "ngaam1"
+  },
+  "啲": {
+    "cangjie": "RHAI",
+    "cantonese": "di1"
+  },
+  "單": {
+    "cangjie": "RRWJ",
+    "cantonese": "daan1 sin4 sin6"
+  },
+  "喺": {
+    "cangjie": "ROHF",
+    "cantonese": "hai2"
+  },
+  "嗰": {
+    "cangjie": "ROWR",
+    "cantonese": "go2 go3"
+  },
+  "嘅": {
+    "cangjie": "RAIU",
+    "cantonese": "ge3 koi3"
+  },
+  "嘢": {
+    "cangjie": "RWGN",
+    "cantonese": "je5"
+  },
+  "嚟": {
+    "cangjie": "RHHE",
+    "cantonese": "lai2 lai4 lei4"
+  },
+  "地": {
+    "cangjie": "GPD",
+    "cantonese": "dei6 deng6"
+  },
+  "埋": {
+    "cangjie": "GWG",
+    "cantonese": "maai4"
+  },
+  "多": {
+    "cangjie": "NINI",
+    "cantonese": "do1"
+  },
+  "大": {
+    "cangjie": "K",
+    "cantonese": "daai6"
+  },
+  "太": {
+    "cangjie": "KI",
+    "cantonese": "taai3"
+  },
+  "好": {
+    "cangjie": "VND",
+    "cantonese": "hou2 hou3"
+  },
+  "客": {
+    "cangjie": "JHER",
+    "cantonese": "haak3"
+  },
+  "家": {
+    "cangjie": "JMSO",
+    "cantonese": "gaa1 gu1"
+  },
+  "尋": {
+    "cangjie": "SMMRI",
+    "cantonese": "cam4"
+  },
+  "對": {
+    "cangjie": "TGDI",
+    "cantonese": "deoi3"
+  },
+  "小": {
+    "cangjie": "NC",
+    "cantonese": "siu2"
+  },
+  "屋": {
+    "cangjie": "SMIG",
+    "cantonese": "nguk1 uk1"
+  },
+  "工": {
+    "cangjie": "MLM",
+    "cantonese": "gung1"
+  },
+  "幫": {
+    "cangjie": "GIHAB",
+    "cantonese": "bong1"
+  },
+  "平": {
+    "cangjie": "MFJ",
+    "cantonese": "peng4 ping4"
+  },
+  "幾": {
+    "cangjie": "VIHI",
+    "cantonese": "gei1 gei2"
+  },
+  "度": {
+    "cangjie": "ITE",
+    "cantonese": "dok6 dou6"
+  },
+  "後": {
+    "cangjie": "HOVIE",
+    "cantonese": "hau6"
+  },
+  "得": {
+    "cangjie": "HOAMI",
+    "cantonese": "dak1"
+  },
+  "心": {
+    "cangjie": "P",
+    "cantonese": "sam1"
+  },
+  "快": {
+    "cangjie": "PDK",
+    "cantonese": "faai3"
+  },
+  "思": {
+    "cangjie": "WP",
+    "cantonese": "si1 si3 soi1"
+  },
+  "急": {
+    "cangjie": "NSP",
+    "cantonese": "gap1"
+  },
+  "想": {
+    "cangjie": "DUP",
+    "cantonese": "soeng2"
+  },
+  "意": {
+    "cangjie": "YTAP",
+    "cantonese": "ji3"
+  },
+  "愛": {
+    "cangjie": "BBPE",
+    "cantonese": "ngoi3 oi3"
+  },
+  "慢": {
+    "cangjie": "PAWE",
+    "cantonese": "maan6"
+  },
+  "我": {
+    "cangjie": "HQI",
+    "cantonese": "ngo5"
+  },
+  "戲": {
+    "cangjie": "YTI",
+    "cantonese": "fu1 hei3"
+  },
+  "所": {
+    "cangjie": "HSHML",
+    "cantonese": "so2"
+  },
+  "手": {
+    "cangjie": "Q",
+    "cantonese": "sau2"
+  },
+  "掂": {
+    "cangjie": "QIYR",
+    "cantonese": "dim1 dim6"
+  },
+  "掛": {
+    "cangjie": "QGGY",
+    "cantonese": "gwaa3 kwaa3"
+  },
+  "搞": {
+    "cangjie": "QYRB",
+    "cantonese": "gaau2"
+  },
+  "搭": {
+    "cangjie": "QTOR",
+    "cantonese": "daap3"
+  },
+  "搵": {
+    "cangjie": "QWOT",
+    "cantonese": "wan2 wan3"
+  },
+  "攰": {
+    "cangjie": "JEKS",
+    "cantonese": "gui6"
+  },
+  "收": {
+    "cangjie": "VLOK",
+    "cantonese": "sau1"
+  },
+  "日": {
+    "cangjie": "A",
+    "cantonese": "jat6"
+  },
+  "早": {
+    "cangjie": "AJ",
+    "cantonese": "zou2"
+  },
+  "明": {
+    "cangjie": "AB",
+    "cantonese": "ming4"
+  },
+  "是": {
+    "cangjie": "AMYO",
+    "cantonese": "si6"
+  },
+  "晒": {
+    "cangjie": "AMCW",
+    "cantonese": "saai3"
+  },
+  "晨": {
+    "cangjie": "AMMV",
+    "cantonese": "san4"
+  },
+  "最": {
+    "cangjie": "ASJE",
+    "cantonese": "zeoi3"
+  },
+  "有": {
+    "cangjie": "KB",
+    "cantonese": "jau5 jau6"
+  },
+  "未": {
+    "cangjie": "JD",
+    "cantonese": "mei6"
+  },
+  "樂": {
+    "cangjie": "VID",
+    "cantonese": "lok6 ngaau6 ngok6"
+  },
+  "樣": {
+    "cangjie": "DTGE",
+    "cantonese": "joeng6"
+  },
+  "次": {
+    "cangjie": "IMNO",
+    "cantonese": "ci3"
+  },
+  "正": {
+    "cangjie": "MYLM",
+    "cantonese": "zeng3 zing1 zing3"
+  },
+  "氣": {
+    "cangjie": "ONFD",
+    "cantonese": "hei3"
+  },
+  "油": {
+    "cangjie": "ELW",
+    "cantonese": "jau4"
+  },
+  "生": {
+    "cangjie": "HQM",
+    "cantonese": "saang1 sang1"
+  },
+  "白": {
+    "cangjie": "HA",
+    "cantonese": "baak6"
+  },
+  "真": {
+    "cangjie": "JBMC",
+    "cantonese": "zan1"
+  },
+  "睇": {
+    "cangjie": "BUCNH",
+    "cantonese": "tai2"
+  },
+  "瞓": {
+    "cangjie": "BUYRL",
+    "cantonese": "fan3"
+  },
+  "知": {
+    "cangjie": "OKR",
+    "cantonese": "zi1 zi3"
+  },
+  "等": {
+    "cangjie": "HGDI",
+    "cantonese": "dang2"
+  },
+  "算": {
+    "cangjie": "HBUT",
+    "cantonese": "syun3"
+  },
+  "緊": {
+    "cangjie": "SEVIF",
+    "cantonese": "gan2"
+  },
+  "而": {
+    "cangjie": "MBLL",
+    "cantonese": "ji4"
+  },
+  "耐": {
+    "cangjie": "MBDI",
+    "cantonese": "noi6"
+  },
+  "聲": {
+    "cangjie": "GESJ",
+    "cantonese": "seng1 sing1"
+  },
+  "聽": {
+    "cangjie": "SGJWP",
+    "cantonese": "teng1 ting1 ting3"
+  },
+  "肚": {
+    "cangjie": "BG",
+    "cantonese": "tou5"
+  },
+  "茶": {
+    "cangjie": "TOD",
+    "cantonese": "caa4"
+  },
+  "落": {
+    "cangjie": "TEHR",
+    "cantonese": "laai6 lok6"
+  },
+  "行": {
+    "cangjie": "HOMMN",
+    "cantonese": "haang4 hang4 hang6 hong4"
+  },
+  "街": {
+    "cangjie": "HOGGN",
+    "cantonese": "gaai1"
+  },
+  "要": {
+    "cangjie": "MWV",
+    "cantonese": "jiu1 jiu3"
+  },
+  "見": {
+    "cangjie": "BUHU",
+    "cantonese": "gin3 jin6"
+  },
+  "覺": {
+    "cangjie": "HBBUU",
+    "cantonese": "gaau3 gok3"
+  },
+  "解": {
+    "cangjie": "NBSHQ",
+    "cantonese": "gaai2 gaai3 haai6"
+  },
+  "該": {
+    "cangjie": "YRYVO",
+    "cantonese": "goi1"
+  },
+  "謂": {
+    "cangjie": "YRWB",
+    "cantonese": "wai6"
+  },
+  "講": {
+    "cangjie": "YRTTB",
+    "cantonese": "gong2"
+  },
+  "謝": {
+    "cangjie": "YRHHI",
+    "cantonese": "ze6"
+  },
+  "貴": {
+    "cangjie": "LMBUC",
+    "cantonese": "gwai3"
+  },
+  "買": {
+    "cangjie": "WLBUC",
+    "cantonese": "maai5"
+  },
+  "走": {
+    "cangjie": "GYO",
+    "cantonese": "zau2"
+  },
+  "車": {
+    "cangjie": "JWJ",
+    "cantonese": "ce1 geoi1"
+  },
+  "近": {
+    "cangjie": "YHML",
+    "cantonese": "gan6 kan5"
+  },
+  "返": {
+    "cangjie": "YHE",
+    "cantonese": "faan1 faan2"
+  },
+  "遲": {
+    "cangjie": "YSYQ",
+    "cantonese": "ci4"
+  },
+  "邊": {
+    "cangjie": "YHUS",
+    "cantonese": "bin1"
+  },
+  "錢": {
+    "cangjie": "CII",
+    "cantonese": "cin2 cin4 zin2"
+  },
+  "錯": {
+    "cangjie": "CTA",
+    "cantonese": "co3 cok3 cou3"
+  },
+  "鐵": {
+    "cangjie": "CJIG",
+    "cantonese": "tit3"
+  },
+  "開": {
+    "cangjie": "ANMT",
+    "cantonese": "hoi1"
+  },
+  "閒": {
+    "cangjie": "ANB",
+    "cantonese": "gaan1 gaan3 haan4"
+  },
+  "陣": {
+    "cangjie": "NLJWJ",
+    "cantonese": "zan6"
+  },
+  "靚": {
+    "cangjie": "QBBUU",
+    "cantonese": "leng3 zing6"
+  },
+  "題": {
+    "cangjie": "AOMBC",
+    "cantonese": "tai4"
+  },
+  "食": {
+    "cangjie": "OIAV",
+    "cantonese": "ji6 sik6 zi6"
+  },
+  "飯": {
+    "cangjie": "OIHE",
+    "cantonese": "faan6"
+  },
+  "飲": {
+    "cangjie": "OINO",
+    "cantonese": "jam2 jam3"
+  },
+  "餓": {
+    "cangjie": "OIHQI",
+    "cantonese": "ngo6"
+  },
+  "點": {
+    "cangjie": "WFYR",
+    "cantonese": "dim2"
+  },
+  "齊": {
+    "cangjie": "YX",
+    "cantonese": "cai4 zai6 zi1"
+  }
+}
