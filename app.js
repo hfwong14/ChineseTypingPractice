@@ -9,9 +9,17 @@
 
   const TOTAL = PHRASES.length;
   const STORAGE_KEY = 'cantonese-daily-progress-v1';
-  const AUTO_NEXT_MS = 1100;
+  const AUTO_NEXT_MS = 300;
   const DEFAULT_FEEDBACK = '打啱晒就會自動去下一句。';
   const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+
+  // Cangjie keys shown as their Chinese key names rather than Latin letters.
+  const CANGJIE_KEYS = {
+    A: '日', B: '月', C: '金', D: '木', E: '水', F: '火', G: '土',
+    H: '竹', I: '戈', J: '十', K: '大', L: '中', M: '一', N: '弓',
+    O: '人', P: '心', Q: '手', R: '口', S: '尸', T: '廿', U: '山',
+    V: '女', W: '田', X: '難', Y: '卜', Z: '重',
+  };
 
   const el = {
     counterCurrent: document.getElementById('counterCurrent'),
@@ -25,7 +33,6 @@
     phrase: document.getElementById('phrase'),
     gloss: document.getElementById('gloss'),
     hintBody: document.getElementById('hintTableWrap'),
-    hintPeek: document.getElementById('hintPeek'),
     hintTable: document.getElementById('hintTable'),
     revealBtn: document.getElementById('revealBtn'),
     revealLabel: document.getElementById('revealLabel'),
@@ -160,11 +167,23 @@
     return cell;
   }
 
+  function cangjieGlyphs(code) {
+    return [...code].map(letter => CANGJIE_KEYS[letter] || letter).join('');
+  }
+
   function renderHint() {
     const phrase = current();
     const table = el.hintTable;
-    table.style.setProperty('--cols', String(phrase.chars.length));
     table.replaceChildren();
+    table.style.setProperty('--cols', String(phrase.chars.length));
+    table.hidden = !revealed;
+    table.setAttribute('aria-hidden', String(!revealed));
+    el.hintBody.hidden = !revealed;
+    el.hintBody.classList.toggle('is-revealed', revealed);
+    el.revealBtn.setAttribute('aria-expanded', String(revealed));
+    el.revealLabel.textContent = revealed ? '收起提示' : '顯示提示';
+
+    if (!revealed) return;
 
     const thead = document.createElement('thead');
     const headRow = document.createElement('tr');
@@ -183,9 +202,10 @@
 
     const tbody = document.createElement('tbody');
     const rows = [
+      { label: '倉頡', className: 'is-code is-cangjie', get: char => char.cangjie, glyphs: true },
+      { label: '速成', className: 'is-code is-quick', get: char => char.quick, glyphs: true },
       { label: '粵拼', className: 'is-jp', get: char => char.jyutping, isJyutping: true },
-      { label: '倉頡', className: 'is-code', get: char => char.cangjie },
-      { label: '速成', className: 'is-code', get: char => char.quick },
+      { label: '漢拼', className: 'is-mp', get: char => char.mandarin },
     ];
 
     rows.forEach((row, rowIndex) => {
@@ -196,14 +216,6 @@
       tr.appendChild(label);
 
       phrase.chars.forEach((char, i) => {
-        if (!revealed) {
-          const cell = document.createElement('td');
-          cell.className = 'is-masked';
-          cell.textContent = '···';
-          tr.appendChild(cell);
-          return;
-        }
-
         const value = row.get(char);
         let cell;
         if (row.isJyutping) {
@@ -211,7 +223,7 @@
         } else {
           cell = document.createElement('td');
           cell.className = row.className;
-          cell.textContent = value.toUpperCase();
+          cell.textContent = row.glyphs ? cangjieGlyphs(value) : value;
         }
         cell.style.animationDelay = `${rowIndex * 22 + i * 16}ms`;
         tr.appendChild(cell);
@@ -221,12 +233,6 @@
     });
 
     table.append(thead, tbody);
-    table.setAttribute('aria-hidden', String(!revealed));
-    table.hidden = !revealed;
-    el.hintPeek.hidden = revealed;
-    el.hintBody.classList.toggle('is-revealed', revealed);
-    el.revealBtn.setAttribute('aria-expanded', String(revealed));
-    el.revealLabel.textContent = revealed ? '收起提示' : '顯示提示';
   }
 
   function renderChrome() {

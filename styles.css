@@ -470,47 +470,12 @@ button {
   scrollbar-width: thin;
 }
 
-.hint-body.is-revealed {
-  padding: 3px 12px 5px;
-}
-
-.hint-peek {
-  height: 46px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 26px;
-}
-
-.hint-peek[hidden] {
+.hint-body[hidden] {
   display: none;
 }
 
-.peek-item {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 8px;
-}
-
-.peek-label {
-  color: #9a8f7e;
-  font-size: 9.5px;
-  font-weight: 600;
-  letter-spacing: .13em;
-}
-
-.peek-dots {
-  color: #c7bdac;
-  font-size: 12px;
-  letter-spacing: .2em;
-  line-height: 1;
-}
-
-.peek-divider {
-  width: 1px;
-  height: 12px;
-  flex: none;
-  background: #e7ddcc;
+.hint-body.is-revealed {
+  padding: 3px 12px 5px;
 }
 
 .hint-table[hidden] {
@@ -582,16 +547,16 @@ button {
 
 .hint-table td.is-code {
   color: #5a5144;
-  font-family: var(--mono);
-  font-size: 11.5px;
-  letter-spacing: .06em;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .1em;
 }
 
-.hint-table td.is-masked {
-  color: #c7bdac;
-  font-family: var(--sans);
-  font-size: 12px;
-  letter-spacing: .18em;
+.hint-table td.is-mp {
+  color: #5a5144;
+  font-size: 12.5px;
+  letter-spacing: .01em;
 }
 
 .hint-body.is-revealed .hint-table td {
@@ -1071,23 +1036,6 @@ kbd {
     padding: 2px 6px 4px;
   }
 
-  .hint-peek {
-    height: 42px;
-    gap: 14px;
-  }
-
-  .peek-item {
-    gap: 6px;
-  }
-
-  .peek-label {
-    font-size: 8.5px;
-  }
-
-  .peek-dots {
-    font-size: 10px;
-  }
-
   .hint-table thead th {
     padding-top: 9px;
     padding-bottom: 7px;
@@ -1111,13 +1059,12 @@ kbd {
   }
 
   .hint-table td.is-code {
-    font-size: 10px;
-    letter-spacing: .02em;
+    font-size: 11.5px;
+    letter-spacing: .04em;
   }
 
-  .hint-table td.is-masked {
-    font-size: 10px;
-    letter-spacing: .08em;
+  .hint-table td.is-mp {
+    font-size: 11px;
   }
 
   .type-input {
@@ -1213,7 +1160,7 @@ kbd {
   }
 
   .hint-table td.is-code {
-    font-size: 9px;
+    font-size: 10.5px;
   }
 
   .finish-stats {

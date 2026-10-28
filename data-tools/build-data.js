@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const ToJyutping = require('to-jyutping');
+const { pinyin } = require('pinyin-pro');
 const { Cangjie } = require('@jimmyclchu/cangjie');
 
 // Cangjie codes are cross-checked against Unicode's Unihan kCangjie field.
@@ -140,16 +141,23 @@ const data = phrases.map(([zh, en, cat], i) => {
     throw new Error(`Jyutping length mismatch: ${zh} -> ${JSON.stringify(jyutpingList)}`);
   }
 
+  const mandarinList = pinyin(zh, { toneType: 'symbol', type: 'array' });
+  if (mandarinList.length !== zh.length) {
+    throw new Error(`Mandarin length mismatch: ${zh} -> ${JSON.stringify(mandarinList)}`);
+  }
+
   const chars = [...zh].map((ch, idx) => {
     const jyutping = JYUTPING_OVERRIDES[ch] || jyutpingList[idx]?.[1];
     if (!jyutping) throw new Error(`Missing Jyutping: ${ch}`);
+    const mandarin = mandarinList[idx];
+    if (!mandarin) throw new Error(`Missing Mandarin pinyin: ${ch}`);
 
     const cangjie = cangjieFor(ch);
     const quick = quickFor(cangjie);
     if (cangjie.length > 5) throw new Error(`Unexpected Cangjie length: ${ch} ${cangjie}`);
 
-    seen.set(ch, { ch, jyutping, cangjie, quick });
-    return { ch, jyutping, cangjie, quick };
+    seen.set(ch, { ch, jyutping, mandarin, cangjie, quick });
+    return { ch, jyutping, mandarin, cangjie, quick };
   });
 
   return {
@@ -159,11 +167,12 @@ const data = phrases.map(([zh, en, cat], i) => {
     cat,
     colloquial: /[唔咗哋嘅喺冇啱嘢佢嚟睇瞓攰唞搵咩咁乜嗰呢啲是]/.test(zh),
     jyutping: chars.map(c => c.jyutping).join(' '),
+    mandarin: chars.map(c => c.mandarin).join(' '),
     chars,
   };
 });
 
-const out = `/* Generated from Unicode-derived Jyutping + Cangjie data. See data-tools/. */\nwindow.PHRASES = ${JSON.stringify(data, null, 2)};\n`;
+const out = `/* Generated from Unicode-derived Jyutping, Mandarin pinyin and Cangjie data. See data-tools/. */\nwindow.PHRASES = ${JSON.stringify(data, null, 2)};\n`;
 fs.writeFileSync(path.join(__dirname, '..', 'data.js'), out);
 
 console.log(`Wrote ${data.length} phrases, ${seen.size} unique characters.`);
