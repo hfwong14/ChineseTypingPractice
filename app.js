@@ -60,6 +60,7 @@
   const MAX_REQUEUES = 2;
   const REQUEUE_GAP = 3;
   const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+  const HAN = /[\u3400-\u9FFF]/;
 
   // Cangjie keys shown as their Chinese key names rather than Latin letters.
   const CANGJIE_KEYS = {
@@ -264,6 +265,14 @@
   function pendingCount() {
     if (!config().srs) return 0;
     return SRS.pendingCount(items(), records);
+  }
+
+  // Unseen items are shuffled, and these signals keep look-alike items apart.
+  function signatureFor(item) {
+    return {
+      chars: [...new Set([...item.zh].filter(ch => HAN.test(ch)))],
+      category: item.cat,
+    };
   }
 
   /* ---------- Rendering ---------- */
@@ -520,9 +529,14 @@
       return;
     }
 
-    queue = SRS.buildQueue(source, records, { cap: cfg.cap });
-    // Nothing due: practise ahead instead of showing an empty session.
-    if (!queue.length) queue = source.slice(0, cfg.cap);
+    queue = SRS.buildQueue(source, records, { cap: cfg.cap, signature: signatureFor });
+    // Nothing due: practise the soonest-due items rather than an empty session.
+    if (!queue.length) {
+      queue = source
+        .slice()
+        .sort((a, b) => (records[a.id]?.due ?? 0) - (records[b.id]?.due ?? 0))
+        .slice(0, cfg.cap);
+    }
     pos = 0;
   }
 

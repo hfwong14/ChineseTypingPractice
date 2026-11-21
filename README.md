@@ -17,10 +17,11 @@ Then visit <http://localhost:8000>.
 ## What's inside
 
 - **Three practice modes**, switched with the control above the practice card and remembered between visits:
-  - **單字** — 516 everyday words, ordered roughly by frequency, in 20-item sessions.
+  - **單字** — 516 everyday words, curated roughly by frequency, in 20-item sessions.
   - **短句** — 305 phrases, from 唔該 and 多謝 to longer conversational lines, in 12-item sessions.
   - **段落** — 30 two-to-four-sentence paragraphs, typed in full with no time limit.
 - **Spaced repetition** for words and phrases: a correct answer pushes the item further into the future (1, 3, 7, 16, then 35 days), while a wrong answer brings it straight back — both later in the same session and first in line next time. Paragraphs are not scheduled.
+- **Shuffled first pass**: unseen items arrive in a random order, spaced so that look-alike items (我 / 我哋, 今日 / 聽日) and same-category runs do not clump together. Reviews still follow the SRS schedule.
 - **Large phrase window** above the typing box, with the current character marked by a caret. Paragraphs wrap and scale down to fit.
 - **Per-character hints** for Jyutping, Cangjie (第五代) and Quick — hidden by default, revealed with one button and reset for every new item. Paragraph punctuation shows as `—`.
 - **Live feedback**: correct characters turn green, wrong ones turn red; words and phrases advance automatically once typed correctly, while paragraphs wait for `Enter`.

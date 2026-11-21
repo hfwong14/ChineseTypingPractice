@@ -51,7 +51,10 @@ Rules:
 - Correct answer: `box + 1` (max 5), `due = now + INTERVALS[box]`.
 - Wrong answer: `box = 0`, `lapses + 1`, `due = now`.
 - `INTERVALS = [0, 1, 3, 7, 16, 35]` days. Box 0 means "again this session".
-- Queue construction: due items oldest-first, then unseen items in curriculum order, sliced to the mode's session size. If nothing is due, practise ahead with the first items rather than showing an empty session.
+- Queue construction: due items oldest-first, then **unseen items shuffled with a similarity-aware order**, sliced to the mode's session size. If nothing is due, practise the soonest-due items rather than showing an empty session.
+- Unseen ordering lives in `SRS.orderFresh` and is driven by a `signature(item) -> { chars, category }` callback supplied by `app.js`. Items sharing a Han character are kept at least 6 positions apart; items sharing a category are kept at least 3 apart. Constraints are best-effort — when the pool makes them impossible, the least-conflicting candidate is chosen, so the function always terminates.
+- The due prefix counts toward the lookback, so a review is not immediately followed by a fresh look-alike.
+- Both `rng` and `signature` are injectable through `buildQueue`/`orderFresh`; tests must pass a seeded RNG rather than relying on `Math.random`.
 - A wrong item is also spliced back into the live queue at `current + 3`, at most twice per item per session, so it reappears soon.
 - Grade each item once per attempt (`graded` flag). Fixing red characters before finishing still counts as a wrong attempt for SRS; the item still advances.
 - Storage key `cantonese-daily-srs-v1` holds `{ version: 1, items: { [id]: record } }`. Unknown ids are pruned on load, so **changing a phrase's text creates a new item and discards its history**.
@@ -113,6 +116,7 @@ Each item has `{ id, zh, en, cat, colloquial?, jyutping, mandarin, chars }`; eac
 - Each mode renders, switches, and survives a reload; mode persists.
 - No countdown or time-limit UI appears anywhere.
 - A wrong word/phrase reappears 2–4 items later and is due immediately next session; a correct one is not requeued and is scheduled in the future.
+- First-time items arrive shuffled: check that 我 / 我哋 / 你 / 你哋 and same-category runs are not adjacent, and that reloading before any answers changes the order.
 - SRS records survive a reload and are pruned when item text changes.
 - Paragraphs require the full correct text, never auto-advance, and never create SRS records.
 - Punctuation shows in the target and as `—` in hints.
