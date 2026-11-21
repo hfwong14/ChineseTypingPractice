@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="日常粵語打字練習 — 由最常用嘅廣東話短句開始，練字同時睇粵拼、倉頡碼同速成碼。">
+  <meta name="description" content="日常粵語打字練習 — 單字、短句同段落三種模式，練字同時睇粵拼、倉頡碼同速成碼，答錯嘅會自動再出現。">
   <meta name="theme-color" content="#f4f0e8">
   <title>日常粵語 · 打字練習</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -25,6 +25,21 @@
   </header>
 
   <main class="shell">
+    <nav class="mode-switch" id="modeSwitch" role="radiogroup" aria-label="練習模式">
+      <button class="mode-btn" type="button" role="radio" data-mode="words" aria-checked="false" tabindex="-1">
+        <span class="mode-btn-name">單字</span>
+        <span class="mode-btn-sub">逐個練</span>
+      </button>
+      <button class="mode-btn" type="button" role="radio" data-mode="phrases" aria-checked="true" tabindex="0">
+        <span class="mode-btn-name">短句</span>
+        <span class="mode-btn-sub">成句練</span>
+      </button>
+      <button class="mode-btn" type="button" role="radio" data-mode="paragraphs" aria-checked="false" tabindex="-1">
+        <span class="mode-btn-name">段落</span>
+        <span class="mode-btn-sub">一氣呵成</span>
+      </button>
+    </nav>
+
     <section class="practice" aria-labelledby="practiceLabel">
       <div class="topline">
         <p class="eyebrow" id="practiceLabel">高頻短句 · 由最常用開始</p>
@@ -70,10 +85,10 @@
 
         <section class="typing" aria-label="打字練習">
           <label class="sr-only" for="typeInput">輸入上面嘅粵語句子</label>
-          <input
+          <textarea
             class="type-input"
             id="typeInput"
-            type="text"
+            rows="1"
             inputmode="text"
             autocomplete="off"
             autocapitalize="off"
@@ -81,10 +96,10 @@
             spellcheck="false"
             enterkeyhint="next"
             placeholder="喺度打…"
-          >
+          ></textarea>
           <div class="typing-meta">
             <p class="feedback" id="feedback" data-tone="">打啱晒就會自動去下一句。</p>
-            <p class="keyhint"><kbd>Enter</kbd> 下一句</p>
+            <p class="keyhint"><kbd>Enter</kbd> <span id="keyhintLabel">下一句</span></p>
           </div>
         </section>
 
@@ -106,10 +121,10 @@
         <div class="controls">
           <button class="nav-btn" id="prevBtn" type="button">
             <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
-            上一句
+            <span id="prevLabel">上一句</span>
           </button>
           <button class="nav-btn nav-btn-primary" id="nextBtn" type="button">
-            下一句
+            <span id="nextLabel">下一句</span>
             <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
         </div>
@@ -117,12 +132,12 @@
 
       <div class="finish" id="finish" hidden>
         <div class="finish-seal" aria-hidden="true">完</div>
-        <h2>練完喇！</h2>
-        <p class="finish-lead">你已經行到最後一句。每日練幾句，好快就變成本能。</p>
+        <h2 id="finishTitle">練完喇！</h2>
+        <p class="finish-lead" id="finishLead">你已經行到最後一句。每日練幾句，好快就變成本能。</p>
         <div class="finish-stats">
           <div class="finish-stat">
             <strong id="finishCompleted">0</strong>
-            <span>句完成</span>
+            <span id="finishCompletedLabel">句完成</span>
           </div>
           <div class="finish-stat">
             <strong id="finishAccuracy">100%</strong>
@@ -130,16 +145,17 @@
           </div>
           <div class="finish-stat">
             <strong id="finishBest">0</strong>
-            <span>最快字 / 分</span>
+            <span id="finishBestLabel">最快字 / 分</span>
           </div>
         </div>
+        <p class="finish-pending" id="finishPending" hidden></p>
         <button class="cta" id="restartBtn" type="button">再嚟一次</button>
       </div>
     </section>
 
     <footer class="site-footer">
       <p>粵拼 Jyutping · 倉頡第五代 · 速成取首尾碼</p>
-      <p>由最常用開始，共 <span id="footerTotal">100</span> 句日常粵語。</p>
+      <p>由最常用開始，共 <span id="footerTotal">100</span> <span id="footerUnit">句</span>日常粵語。</p>
     </footer>
   </main>
 
@@ -147,6 +163,7 @@
   <div class="sr-only" id="announce" aria-live="polite"></div>
 
   <script src="data.js"></script>
+  <script src="srs.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

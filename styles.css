@@ -166,6 +166,64 @@ button {
   border-bottom-color: var(--accent);
 }
 
+/* ---------- Mode switch ---------- */
+
+.mode-switch {
+  display: flex;
+  gap: 4px;
+  width: min(880px, 100%);
+  margin: 0 auto 14px;
+  padding: 4px;
+  border: 1px solid rgba(214, 202, 184, .85);
+  border-radius: 999px;
+  background: rgba(255, 253, 248, .7);
+  box-shadow: 0 12px 30px -26px rgba(76, 55, 25, .5);
+}
+
+.mode-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+
+.mode-btn:hover {
+  background: rgba(236, 228, 215, .6);
+  color: var(--ink);
+}
+
+.mode-btn[aria-checked="true"] {
+  background: var(--ink);
+  color: #fffdf8;
+}
+
+.mode-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.mode-btn-name {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  line-height: 1.2;
+}
+
+.mode-btn-sub {
+  font-size: 9px;
+  letter-spacing: .1em;
+  line-height: 1.2;
+  opacity: .7;
+}
+
 /* ---------- Shell / card ---------- */
 
 .shell {
@@ -322,6 +380,18 @@ button {
   letter-spacing: .02em;
   line-height: 1.08;
   text-align: center;
+}
+
+.stage.is-paragraph {
+  min-height: clamp(260px, 38vh, 400px);
+  padding: 52px 30px 34px;
+}
+
+.stage.is-paragraph .phrase {
+  max-width: 100%;
+  font-size: clamp(1.55rem, 4.4vw, 2.7rem);
+  line-height: 1.55;
+  letter-spacing: .03em;
 }
 
 .char {
@@ -483,11 +553,10 @@ button {
 }
 
 .hint-table {
-  width: 100%;
-  max-width: min(100%, calc(54px + var(--cols, 4) * 84px));
+  width: max-content;
+  min-width: min(100%, calc(54px + var(--cols, 4) * 84px));
   margin: 0 auto;
   border-collapse: collapse;
-  table-layout: fixed;
 }
 
 .hint-table th,
@@ -570,9 +639,11 @@ button {
 }
 
 .type-input {
+  display: block;
   width: 100%;
   height: 66px;
-  padding: 0 22px;
+  min-height: 66px;
+  padding: 20px 22px;
   border: 1.5px solid #ded4c4;
   border-radius: 16px;
   background: #fffefa;
@@ -581,9 +652,11 @@ button {
   font-size: 22px;
   font-weight: 500;
   letter-spacing: .07em;
-  line-height: 1;
+  line-height: 1.25;
   text-align: center;
   outline: none;
+  resize: none;
+  overflow: hidden;
   box-shadow: inset 0 1px 2px rgba(70, 54, 30, .035);
   transition: border-color .2s, box-shadow .2s, background .2s, color .2s;
   -webkit-appearance: none;
@@ -604,6 +677,15 @@ button {
 
 .type-input:read-only {
   cursor: default;
+}
+
+.type-input.is-paragraph {
+  min-height: 132px;
+  padding: 16px 20px;
+  font-size: 19px;
+  line-height: 1.7;
+  letter-spacing: .04em;
+  text-align: left;
 }
 
 .typing.is-success .type-input {
@@ -815,6 +897,17 @@ kbd {
   font-size: 13.5px;
   letter-spacing: .02em;
   line-height: 1.8;
+}
+
+.finish-pending {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: .04em;
+}
+
+.finish-pending[hidden] {
+  display: none;
 }
 
 .finish-stats {
@@ -1173,6 +1266,37 @@ kbd {
 
   .finish-stat span {
     font-size: 8.5px;
+  }
+}
+
+@media (max-width: 680px) {
+  .mode-switch {
+    margin-bottom: 10px;
+    padding: 3px;
+  }
+
+  .mode-btn {
+    padding: 7px 6px;
+  }
+
+  .mode-btn-name {
+    font-size: 12px;
+  }
+
+  .mode-btn-sub {
+    display: none;
+  }
+
+  .stage.is-paragraph .phrase {
+    font-size: clamp(1.3rem, 5.2vw, 1.9rem);
+    line-height: 1.6;
+  }
+
+  .type-input.is-paragraph {
+    min-height: 120px;
+    padding: 13px 14px;
+    font-size: 16.5px;
+    line-height: 1.65;
   }
 }
 

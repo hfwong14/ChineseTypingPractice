@@ -2,7 +2,7 @@
   "name": "cantonese-daily-data-tools",
   "version": "1.0.0",
   "private": true,
-  "description": "Generates the phrase dataset for the Cantonese typing practice site.",
+  "description": "Generates the word, phrase and paragraph datasets for the Cantonese typing practice site.",
   "type": "commonjs",
   "scripts": {
     "build": "node build-data.js"
